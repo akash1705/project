@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Digital Health</a>
+    </div>
+    </div>
+</nav>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/functions.js"></script>
+	<script type="text/javascript">
+	
+		var allHospitals=null;
+		function getAllHospitals(){
+		$.ajax({
+		    type : "GET",
+            contentType : "application/json",
+            url : "http://localhost:8087/hospital/getall",
+            dataType : 'json',
+            success : function(result) {
+                //alert(result);
+            	
+                var sel=$("#hospitals").prependTo("#labDashboard");
+                var label=$("<label/>").text("Hospitals").prependTo("#hospitals");
+        		$(result).each(function()
+        		{
+        			sel.append($("<option/>").attr('value',this.id).text(this.name));
+        		}
+        		
+        		);
+            },
+            error : function(e) {
+                alert("Error!")
+                console.log("ERROR: ", e);
+            }
+        });
+		
+		
+		
+		
+		}
+		
+		
+		getAllHospitals();
+		
+		
+	
+	</script>
+	
+	
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	
+<title>Lab Dashboard</title>
+</head>
+<body>
+		<form id="labDashboard">
+		
+		<div class="form-group">
+		<label for="hospitals">Hospitals:</label>
+  		<select id="hospitals" class="form-control"></select>
+  		
+  		</div>
+		
+		 <div class="form-group">
+    <label for="caseNumber">Case Number:</label>
+    <input type="text" class="form-control" id="caseNumber" />
+  </div>
+		
+		<div class="form-group">
+		<label for="name">Name:</label>
+    		<input type="text" class="form-control" id="name" />
+  		</div>
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email"  />
+  </div>
+
+  <div class="form-group">
+    <label for="mobile">Mobile Number:</label>
+    <input type="number" class="form-control" id="mobile" />
+  </div>
+  <div class="form-group">
+    <label for="add">Address:</label>
+    <input type="text" class="form-control" id="add" />
+  </div>
+  
+ 
+ <button type="button" class="btn btn-primary" id="postCase">Submit</button>
+
+
+</form>
+		
+</body>
+</html>

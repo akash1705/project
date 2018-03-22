@@ -1,0 +1,45 @@
+<html>
+	<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/functions.js"></script>
+	
+	
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Digital Health</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+	</head>
+	<body>
+	<form id="form">
+  		<div class="form-group">
+  		
+  		<div class="radio">
+  <label><input type="radio" name="userType" value="lab"/>Lab</label>
+</div>
+<div class="radio">
+  <label><input type="radio" name="userType" value="hospital" />Doctor</label>
+</div>
+    		<label for="email">Email address:</label>
+    		<input type="email" class="form-control" id="email" />
+  		</div>
+  		<div class="form-group">
+  		    <label for="password">Password:</label>
+    		<input type="password" class="form-control" id="password" />
+  		</div>
+  
+ <button type="button" class="btn btn-primary" id="postBtn">Login</button>
+ <br/>
+ <a href="./register.html">Not Yet Registered ??</a>
+</form>
+		<p id="msg" >Message</p>
+	</body>
+</html>
