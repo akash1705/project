@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -43,7 +46,30 @@ public class Lab {
 	@JsonIgnore
 	private Set<Case> cases;
 	
+	@ManyToMany
+    @JoinTable(name = "lab_role", joinColumns = {@JoinColumn(name = "labId")}, inverseJoinColumns = { @JoinColumn(name = "roleId")})
+	@JsonIgnore
+	private Set<Role> roles;
 	
+	
+	public Integer getLabId() {
+		return labId;
+	}
+	public void setLabId(Integer labId) {
+		this.labId = labId;
+	}
+	public Set<Case> getCases() {
+		return cases;
+	}
+	public void setCases(Set<Case> cases) {
+		this.cases = cases;
+	}
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	public Integer getId() {
 		return labId;
 	}
