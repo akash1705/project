@@ -3,7 +3,9 @@ package com.app.service;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,23 +19,26 @@ import com.app.entity.Role;
 import com.app.repositories.LabRepository;
 
 @Service
+@Transactional
 public class LabDetailsService implements UserDetailsService {
 
 	@Autowired
 	private LabRepository repo;
 	
+	private static final Logger logger=Logger.getLogger(LabDetailsService.class);
+	
 	@Override
-	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		Lab lab=repo.findByEmail(arg0);
-		
+		logger.info(lab);
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         for (Role role : lab.getRoles()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
-		
-		return new org.springframework.security.core.userdetails.User(lab.getEmail(), lab.getPassword(), grantedAuthorities);
+		UserDetails user=(UserDetails)new User(lab.getEmail(), lab.getPassword(), grantedAuthorities);
+		logger.info(user);
+		return user;
 	}
 
 }

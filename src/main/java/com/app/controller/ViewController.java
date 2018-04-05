@@ -2,17 +2,25 @@ package com.app.controller;
 
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/views")
 public class ViewController implements ErrorController {
 
 	
-	@RequestMapping("/login")
-	public String getLogin()
+	@RequestMapping("/hosplogin")
+	public String getHospLogin()
 	{
-		return "login";
+		return "hosplogin";
+	}
+	
+	@RequestMapping(value = "/lablogin", method = RequestMethod.GET)
+	public String getLabLogin()
+	{
+		return "lablogin";
 	}
 	
 	@RequestMapping("/register")

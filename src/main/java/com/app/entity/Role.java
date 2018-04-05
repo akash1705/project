@@ -2,6 +2,7 @@ package com.app.entity;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,11 +14,14 @@ import javax.persistence.Table;
 @Table(name="role")
 public class Role {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="role_id")
 	private Integer roleId;
-    private String name;
-    private Set<Lab> users;
+	
+    private String role;
 
-    public Integer getRoleId() {
+	public Integer getRoleId() {
 		return roleId;
 	}
 
@@ -25,32 +29,15 @@ public class Role {
 		this.roleId = roleId;
 	}
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer getId() {
-        return roleId;
-    }
+	public String getRole() {
+		return role;
+	}
 
-    public void setId(Integer id) {
-        this.roleId = id;
-    }
+	public void setRole(String role) {
+		this.role = role;
+	}
+    
+    
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @ManyToMany(mappedBy = "roles")
-    public Set<Lab> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<Lab> users) {
-        this.users = users;
-    }
-
-	
+   	
 }
