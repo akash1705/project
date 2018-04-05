@@ -22,18 +22,18 @@ public class Lab {
 
 	
 	@Id
-	@Column(unique=true,nullable=false)
+	@Column(unique=true,nullable=false,name="lab_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer labId;
 	
-	@Column(nullable=false)
+	@Column(nullable=false,name="name")
 	private String name;
 	
-	@Column(unique=true, nullable=false)
+	@Column(unique=true, nullable=false,name="email")
 	private String email;
 	
-	@Column(nullable=false)
-	@JsonIgnore
+	@Column(nullable=false,name="password")
+	//@JsonIgnore
 	private String password;
 	
 	@Column(nullable=false)
@@ -47,7 +47,7 @@ public class Lab {
 	private Set<Case> cases;
 	
 	@ManyToMany
-    @JoinTable(name = "lab_role", joinColumns = {@JoinColumn(name = "labId")}, inverseJoinColumns = { @JoinColumn(name = "roleId")})
+    @JoinTable(name = "lab_role", joinColumns = {@JoinColumn(name = "lab_id")}, inverseJoinColumns = { @JoinColumn(name = "role_id")})
 	@JsonIgnore
 	private Set<Role> roles;
 	
